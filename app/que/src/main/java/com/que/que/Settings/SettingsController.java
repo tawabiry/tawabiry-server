@@ -26,4 +26,9 @@ public class SettingsController {
         return ResponseEntity.ok(settingsService.updateSettings(settingsRequest.isMaintenanceMode(),
                 settingsRequest.isComingSoonMode(), settingsRequest.getMaintenanceDuration()));
     }
+
+    @GetMapping("/warning")
+    public ResponseEntity<Object> getWarning() {
+        return ResponseEntity.ok(settingsService.getWarning());
+    }
 }
