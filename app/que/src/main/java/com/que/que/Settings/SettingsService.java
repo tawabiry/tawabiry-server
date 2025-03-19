@@ -13,6 +13,8 @@ public class SettingsService {
     public static Date scheduledMaintenanceTime = null;
     private long maintenanceDuration = 10; // in minutes
 
+    private final long MAINTENANCE_GRACE_PERIOD = 60 * 1000 * 60;
+
     public Map<String, Object> getSettings() {
         Map<String, Object> settings = Map.of(
                 "isMaintenanceMode", isMaintenanceMode,
@@ -37,9 +39,9 @@ public class SettingsService {
                     SettingsService.isWarning = false;
                     SettingsService.scheduledMaintenanceTime = null;
                 }
-            }, 60 * 60 * 1000);
+            }, MAINTENANCE_GRACE_PERIOD);
             SettingsService.isWarning = true;
-            SettingsService.scheduledMaintenanceTime = new Date(System.currentTimeMillis() + 60 * 60 * 1000);
+            SettingsService.scheduledMaintenanceTime = new Date(System.currentTimeMillis() + MAINTENANCE_GRACE_PERIOD);
         } else {
             SettingsService.isMaintenanceMode = isMaintenanceMode;
             SettingsService.isWarning = false;
@@ -59,8 +61,8 @@ public class SettingsService {
     }
 
     public Map<String, Object> getWarning() {
-        Map<String, Object> warning = Map.of("isWarning", SettingsService.isWarning);
-        warning.put("scheduledMaintenanceTime", SettingsService.scheduledMaintenanceTime);
+        Map<String, Object> warning = Map.of("isWarning", SettingsService.isWarning,
+                "scheduledMaintenanceTime", SettingsService.scheduledMaintenanceTime);
         return warning;
     }
 }
