@@ -71,7 +71,7 @@ public class QueueService {
       throw new IllegalStateException("Can't add new queue");
     }
     if (!isValidForNewQueue(queueHolderID)) {
-      throw new IllegalStateException("Can not create queue for user");
+      throw new IllegalStateException("Invalid for a new queue. Please upgrade your subscription plan.");
     }
     if (queueRepository.findByName(name).orElse(null) != null) {
       throw new IllegalStateException("Queue name already used");
@@ -434,7 +434,7 @@ public class QueueService {
     checkIfFirstOperation();
 
     AppUser appUser = appUserRepository.findByEmail(email)
-        .orElseThrow(() -> new IllegalStateException("Could not find user with such username"));
+        .orElseThrow(() -> new IllegalStateException("Could not find user with this email"));
 
     Queues queue = queueRepository.findByName(queueName)
         .orElseThrow(() -> new IllegalStateException("Could not find queue with such name"));

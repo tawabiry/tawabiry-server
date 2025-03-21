@@ -51,7 +51,7 @@ public class RegistrationService {
       throw new IllegalStateException("Email invalid");
     }
     if (!request.getPassword().equals(request.getConfirmPassword())) {
-      throw new IllegalStateException("Password do not match");
+      throw new IllegalStateException("Passwords do not match");
     }
 
     if (!phoneCodes.contains(request.getPhoneCode())) {
@@ -146,7 +146,7 @@ public class RegistrationService {
       throw new IllegalStateException("Email invalid");
     }
     if (!request.getPassword().equals(request.getConfirmPassword())) {
-      throw new IllegalStateException("Password do not match");
+      throw new IllegalStateException("Passwords do not match");
     }
 
     // if (!phoneCodes.contains(request.getPhoneCode())) {

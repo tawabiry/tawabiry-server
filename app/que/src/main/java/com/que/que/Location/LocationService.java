@@ -144,7 +144,7 @@ public class LocationService {
 
         if (!location.getPartner().equals(partner)) {
             throw new IllegalStateException(
-                    "Location with id " + locationId + " does not belong to business with name " + businessName);
+                    "Location does not belong to this business");
         }
 
         return openingHoursRepository.findByLocation(location);
