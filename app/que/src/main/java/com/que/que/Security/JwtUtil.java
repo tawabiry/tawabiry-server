@@ -35,7 +35,7 @@ public class JwtUtil {
     try {
       return jwtParser.parse(token).getPayload();
     } catch (Exception e) {
-      throw new IllegalStateException("Could not verify JWT token integrity!");
+      throw new IllegalStateException("Could not verify JWT token integrity");
     }
   }
 
